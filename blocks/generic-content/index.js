@@ -2,6 +2,7 @@
  * Block dependencies
  */
 import classnames from 'classnames';
+import ColorOptions from '../block-options/color-options';
 import './style.scss';
 
 /**
@@ -14,19 +15,9 @@ const {
 	Editable,
 	AlignmentToolbar,
 	BlockControls,
-	InspectorControls,
-	BlockDescription,
-	ColorPalette,
 } = wp.blocks;
 
-const {
-	Toolbar,
-	Button,
-	Tooltip,
-	PanelBody,
-	PanelColor,
-	PanelRow,
-} = wp.components;
+const {} = wp.components;
 
 const { getComputedStyle } = window;
 
@@ -63,22 +54,19 @@ export default registerBlockType(
 		},
 		edit: props => {
 
+			const onChangeBackgroundColor = value => {
+				props.setAttributes( { backgroundColor: value } );
+			}
+
+			const onChangeTextColor = value => {
+				props.setAttributes( { textColor: value } );
+			}
+
 			return [
 				!! props.focus && (
-					<InspectorControls key="inspector">
-						<PanelColor title={ __( 'Background Color' ) } colorValue={ props.attributes.backgroundColor } initialOpen={ false }>
-							<ColorPalette
-								value={ props.attributes.backgroundColor }
-								onChange={ ( colorValue ) => props.setAttributes( { backgroundColor: colorValue } ) }
-							/>
-						</PanelColor>
-						<PanelColor title={ __( 'Text Color' ) } colorValue={ props.attributes.textColor } initialOpen={ false }>
-							<ColorPalette
-								value={ props.attributes.textColor }
-								onChange={ ( colorValue ) => props.setAttributes( { textColor: colorValue } ) }
-							/>
-						</PanelColor>
-					</InspectorControls>
+					<ColorOptions
+						{ ...{ onChangeBackgroundColor, onChangeTextColor, ...props} }
+					/>
 				),
 				!! props.focus && (
 					<BlockControls key="controls">
