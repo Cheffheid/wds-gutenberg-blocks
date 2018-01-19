@@ -76,7 +76,7 @@ export default registerBlockType(
 						/>
 					</BlockControls>
 				),
-				<div
+				<section
 					className={ classnames(
 						props.className,
 					) }
@@ -84,7 +84,6 @@ export default registerBlockType(
 					<Editable
 						tagName="div"
 						multiline="p"
-						placeholder={ __( 'Enter your message here..' ) }
 						value={ props.attributes.content }
 						style={ {
 							backgroundColor: props.attributes.backgroundColor,
@@ -94,19 +93,19 @@ export default registerBlockType(
 						onChange={ ( value ) => props.setAttributes( { content: value } ) }
 						focus={ props.focus }
 					/>
-				</div>
+				</section>
 			];
 		},
 		save: props => {
 			return (
-				<div
+				<section
 					className={ classnames(
 						'generic-content',
 					) }
 					style={ { textAlign: props.attributes.alignment } }
 				>
 					{ props.attributes.content }
-				</div>
+				</section>
 			);
 		},
 	},
