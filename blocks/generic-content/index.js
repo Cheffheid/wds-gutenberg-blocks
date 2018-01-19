@@ -48,6 +48,9 @@ export default registerBlockType(
 			backgroundColor: {
 				type: 'string',
 			},
+			backgroundImage: {
+				type: 'string',
+			},
 			fontSize: {
 				type: 'number',
 			},
@@ -65,6 +68,10 @@ export default registerBlockType(
 				props.setAttributes( { backgroundColor: value } );
 			}
 
+			const onChangeBackgroundImage = value => {
+				props.setAttributes( { backgroundImage: value } );
+			}
+
 			const onChangeTextColor = value => {
 				props.setAttributes( { textColor: value } );
 			}
@@ -72,7 +79,7 @@ export default registerBlockType(
 			return [
 				!! props.focus && (
 					<BackgroundOptions
-						{ ...{ onChangeBackgroundType, onChangeBackgroundColor, onChangeTextColor, ...props} }
+						{ ...{ onChangeBackgroundImage, onChangeBackgroundType, onChangeBackgroundColor, onChangeTextColor, ...props} }
 					/>
 				),
 				!! props.focus && (
