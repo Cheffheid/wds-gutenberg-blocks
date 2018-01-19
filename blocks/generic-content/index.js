@@ -2,7 +2,7 @@
  * Block dependencies
  */
 import classnames from 'classnames';
-import ColorOptions from '../block-options/color-options';
+import BackgroundOptions from '../block-options/background-options';
 import './style.scss';
 
 /**
@@ -64,7 +64,7 @@ export default registerBlockType(
 
 			return [
 				!! props.focus && (
-					<ColorOptions
+					<BackgroundOptions
 						{ ...{ onChangeBackgroundColor, onChangeTextColor, ...props} }
 					/>
 				),

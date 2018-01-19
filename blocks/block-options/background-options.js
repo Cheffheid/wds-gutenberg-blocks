@@ -17,7 +17,7 @@ const {
 /**
  * Create an Inspector Controls wrapper Component
  */
-export default class ColorOptions extends Component {
+export default class BackgroundOptions extends Component {
 
 	constructor( props ) {
 		super( ...arguments );
