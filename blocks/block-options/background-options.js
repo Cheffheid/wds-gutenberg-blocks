@@ -25,8 +25,7 @@ export default class BackgroundOptions extends Component {
 		super( ...arguments );
 	}
 
-	render() {
-		const backgroundType = this.props.attributes.backgroundType;
+	getColorPanel() {
 
 		let colorPanel = <PanelColor title={ __( 'Background Color' ) } colorValue={ this.props.attributes.backgroundColor } initialOpen={ false }>
 							<ColorPalette
@@ -35,11 +34,18 @@ export default class BackgroundOptions extends Component {
 							/>
 						</PanelColor>;
 
-		// Don't show the colour panel if the background type is not "color".
-		if ( 'color' !== backgroundType ) {
-			colorPanel = '';
+
+		if ( 'color' !== this.props.attributes.backgroundType ) {
 			this.props.onChangeBackgroundColor( '' );
+			colorPanel = '';
 		}
+
+		return colorPanel;
+	}
+
+	render() {
+		const backgroundType = this.props.attributes.backgroundType;
+		const colorPanel = this.getColorPanel();
 
 		return (
 			<InspectorControls key="inspector">
