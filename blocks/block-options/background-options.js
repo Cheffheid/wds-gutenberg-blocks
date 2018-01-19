@@ -8,10 +8,12 @@ const { Component } = wp.element;
 const {
 	InspectorControls,
 	ColorPalette,
+	MediaUpload,
 } = wp.blocks;
 
 const {
 	PanelColor,
+	Button,
 } = wp.components;
 
 const SelectControl = wp.blocks.InspectorControls.SelectControl;
@@ -43,9 +45,30 @@ export default class BackgroundOptions extends Component {
 		return colorPanel;
 	}
 
+	getBackgroundUpload() {
+
+		let backgroundUpload = <MediaUpload
+									onSelect={ this.props.onChangeBackgroundImage }
+									type="image"
+									value={ this.props.attributes.backgroundImage ? this.props.attributes.backgroundImage : null }
+									render={ ( { open } ) => (
+										<Button onClick={ open }>
+											{ __( 'Select Background Image' ) }
+										</Button>
+									) }
+								/>
+
+		if ( 'image' !== this.props.attributes.backgroundType ) {
+			backgroundUpload = '';
+		}
+
+		return backgroundUpload;
+	}
+
 	render() {
-		const backgroundType = this.props.attributes.backgroundType;
-		const colorPanel = this.getColorPanel();
+		const backgroundType = this.props.attributes.backgroundType,
+			colorPanel = this.getColorPanel(),
+			backgroundUpload = this.getBackgroundUpload();
 
 		return (
 			<InspectorControls key="inspector">
@@ -72,6 +95,8 @@ export default class BackgroundOptions extends Component {
 				/>
 
 				{colorPanel}
+
+				{backgroundUpload}
 
 				<PanelColor title={ __( 'Text Color' ) } colorValue={ this.props.attributes.textColor } initialOpen={ false }>
 					<ColorPalette
