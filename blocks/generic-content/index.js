@@ -49,7 +49,7 @@ export default registerBlockType(
 				type: 'string',
 			},
 			backgroundImage: {
-				type: 'string',
+				type: 'object',
 			},
 			fontSize: {
 				type: 'number',
@@ -101,6 +101,7 @@ export default registerBlockType(
 						value={ props.attributes.content }
 						style={ {
 							backgroundColor: props.attributes.backgroundColor,
+							backgroundImage: props.attributes.backgroundImage ? `url(${props.attributes.backgroundImage.url})` : null,
 							color: props.attributes.textColor,
 							textAlign: props.attributes.alignment
 						} }
